@@ -15,6 +15,37 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ExperimentalSerializationApi
 
+
+@OptIn(ExperimentalSerializationApi::class)
+@Preview
+@Composable
+fun SimpleBasicTable() {
+    val headers = listOf("序号", "姓名", "操作")
+    val bodyData: List<Item> = DataProvider.testItems
+    Box(
+        Modifier
+            .border(border = BorderStroke(Dp.Hairline, color = Color.LightGray))
+            .padding(20.dp)
+    ) {
+        SimpleTable(
+            modifier = Modifier.height(300.dp),
+            row = bodyData.size,
+            col = headers.size,
+            onRowSelected = { singleSelectionRowIndex, singleSelectionRowToggle ->
+                println("row-$singleSelectionRowIndex ${if (singleSelectionRowToggle) "isSelected" else "unSelected"}")
+            },
+            headerData = headers
+        ) { row, col ->
+            when (col) {
+                0 -> Text(text = bodyData[row].id.toString(), style = MaterialTheme.typography.body1)
+                1 -> Text(text = bodyData[row].name, style = MaterialTheme.typography.body1)
+                2 -> Checkbox(checked = bodyData[row].isSelected, onCheckedChange = null)
+            }
+        }
+    }
+}
+
+
 @OptIn(ExperimentalSerializationApi::class)
 @Preview
 @Composable
@@ -198,14 +229,3 @@ fun SimpleTable(
 
     }
 }
-
-
-@ExperimentalFoundationApi
-fun LazyListScope.corner(key: Any? = null, content: @Composable LazyItemScope.() -> Unit) =
-    stickyHeader(key, content)
-
-fun LazyListScope.fixedRows(
-    count: Int,
-    key: ((index: Int) -> Any)? = null,
-    itemContent: @Composable LazyItemScope.(index: Int) -> Unit
-) = items(count, key, itemContent)
