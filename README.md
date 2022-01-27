@@ -170,7 +170,7 @@ fun main() = application {
 
 ### 参考
 
-[Jetpack Compose Lists](https://developer.android.com/jetpack/compose/lists)
-[ComposeTable](https://github.com/sjzneil/ComposeTable)
-[ComposeDataTable](https://github.com/hashlin/ComposeDataTable)
-[Element UI Table](https://element.eleme.cn/#/zh-CN/component/table)
+- [Jetpack Compose Lists](https://developer.android.com/jetpack/compose/lists)
+- [ComposeTable](https://github.com/sjzneil/ComposeTable)
+- [ComposeDataTable](https://github.com/hashlin/ComposeDataTable)
+- [Element UI Table](https://element.eleme.cn/#/zh-CN/component/table)
